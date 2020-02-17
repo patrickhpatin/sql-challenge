@@ -1,5 +1,5 @@
 -- departments (dept_no, dept_name)
-DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS departments CASCADE;
 CREATE TABLE departments (
 	dept_no VARCHAR(4) PRIMARY KEY,
 	dept_name VARCHAR NOT NULL
@@ -13,7 +13,7 @@ DELIMITER ',' CSV HEADER;
 SELECT * FROM departments;
 
 -- employees (emp_no, birth_date, first_name, last_name, gender, hire_date)
-DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS employees CASCADE;
 CREATE TABLE employees (
 	emp_no INTEGER PRIMARY KEY, 
 	birth_date VARCHAR(10) NOT NULL, 
@@ -31,7 +31,7 @@ DELIMITER ',' CSV HEADER;
 SELECT * FROM employees;
 
 -- dept_emp (emp_no, dept_no, from_date, to_date)
-DROP TABLE IF EXISTS dept_emp;
+DROP TABLE IF EXISTS dept_emp CASCADE;
 CREATE TABLE dept_emp (
 	emp_no INTEGER NOT NULL,
 	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
@@ -50,7 +50,7 @@ DELIMITER ',' CSV HEADER;
 SELECT * FROM dept_emp;
 
 -- dept_manager (dept_no, emp_no, from_date, to_date)
-DROP TABLE IF EXISTS dept_manager;
+DROP TABLE IF EXISTS dept_manager CASCADE;
 CREATE TABLE dept_manager (
 	dept_no VARCHAR(4) NOT NULL,
 	FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
@@ -69,7 +69,7 @@ DELIMITER ',' CSV HEADER;
 SELECT * FROM dept_manager;
 
 -- salaries (emp_no, salary, from_date, to_date)
-DROP TABLE IF EXISTS salaries;
+DROP TABLE IF EXISTS salaries CASCADE;
 CREATE TABLE salaries (
 	id SERIAL PRIMARY KEY,
 	emp_no INTEGER NOT NULL,
@@ -87,7 +87,7 @@ DELIMITER ',' CSV HEADER;
 SELECT * FROM salaries;
 
 -- titles (emp_no, title, from_date, to_date)
-DROP TABLE IF EXISTS titles;
+DROP TABLE IF EXISTS titles CASCADE;
 CREATE TABLE titles (
 	id SERIAL PRIMARY KEY,
 	emp_no INTEGER NOT NULL,
